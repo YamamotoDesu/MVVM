@@ -2,6 +2,8 @@
 Learn the latest Android technologies including Dagger2, MVVM, Kotlin, RxJava, Retrofit, Mockito and Glide
 
 ##  1. Integrating the ViewModel and LiveData components 
+ <img width="300" src="https://user-images.githubusercontent.com/47273077/166446733-42b0a068-3746-4119-9095-855e87ac2303.png">
+
 Model
 ```kt
 data class Country(val countryName: String?)
