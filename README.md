@@ -53,6 +53,14 @@ fun ImageView.loadImage(url: String?, progressDrawable: CircularProgressDrawable
  
 ### Refreshing
  <img width="300" src="https://github.com/YamamotoDesu/MVVM/blob/master/app/src/main/java/com/codewithkyo/countries/gif/refreshing.gif">
+ 
+ ```kt
+         binding.swipeRefreshLayout.setOnRefreshListener {
+            binding.swipeRefreshLayout.isRefreshing = false
+            viewModel.refresh()
+        }
+
+ ```
 
 ##  1. Integrating the ViewModel and LiveData components 
  <img width="300" src="https://user-images.githubusercontent.com/47273077/166446733-42b0a068-3746-4119-9095-855e87ac2303.png">
