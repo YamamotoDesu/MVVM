@@ -1,13 +1,12 @@
 package com.codewithkyo.countries.view
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.codewithkyo.countries.R
 import com.codewithkyo.countries.databinding.ItemCountryBinding
 import com.codewithkyo.countries.model.Country
+import com.codewithkyo.countries.util.getProgressDrawable
+import com.codewithkyo.countries.util.loadImage
 
 class CountryListAdapter(var countries: ArrayList<Country>): RecyclerView.Adapter<CountryListAdapter.CountryViewHolder>() {
 
@@ -29,10 +28,15 @@ class CountryListAdapter(var countries: ArrayList<Country>): RecyclerView.Adapte
 
     class CountryViewHolder(viewBinding: ItemCountryBinding): RecyclerView.ViewHolder(viewBinding.root) {
 
+        private val imageView = viewBinding.imageView
         private val countryName = viewBinding.name
+        private val countryCapital = viewBinding.capital
+        private val progressDrawable = getProgressDrawable(viewBinding.root.context)
 
         fun bind(country: Country) {
             countryName.text = country.countryName
+            countryCapital.text = country.capital
+            imageView.loadImage(country.flag, progressDrawable)
         }
     }
 }

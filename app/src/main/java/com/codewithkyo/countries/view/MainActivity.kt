@@ -5,9 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.ViewModelProviders
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.codewithkyo.countries.R
 import com.codewithkyo.countries.databinding.ActivityMainBinding
 import com.codewithkyo.countries.viewmodel.ListViewModel
 
@@ -30,12 +28,19 @@ class MainActivity : AppCompatActivity() {
             adapter = countriesAdapter
         }
 
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            binding.swipeRefreshLayout.isRefreshing = false
+            viewModel.refresh()
+        }
+
         observeViewMode()
     }
 
     private fun observeViewMode() {
         viewModel.countries.observe(this, Observer { countries ->
-            countries?.let { countriesAdapter.updateCountries(it) }
+            countries?.let {
+                binding.countriesList.visibility = View.VISIBLE
+                countriesAdapter.updateCountries(it) }
         })
 
         viewModel.countryLoadError.observe(this, Observer { isError ->
