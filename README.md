@@ -412,5 +412,76 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
+### Implement Dagger
+ApiModule
+```kt
+import com.codewithkyo.countries.model.CountriesApi
+import com.codewithkyo.countries.model.CountriesService
+import dagger.Module
+import dagger.Provides
+import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
+import retrofit2.converter.gson.GsonConverterFactory
 
+@Module
+class ApiModule {
 
+    private val BASE_URL = "https://raw.githubusercontent.com"
+
+    @Provides
+    fun provideCountriesApi(): CountriesApi {
+        return Retrofit.Builder()
+            .baseUrl(BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+            .build()
+            .create(CountriesApi::class.java)
+
+    }
+
+    @Provides
+    fun provideSeCountriesService(): CountriesService {
+        return CountriesService()
+    }
+}
+```
+
+Component
+```kt
+import com.codewithkyo.countries.model.CountriesService
+import com.codewithkyo.countries.viewmodel.ListViewModel
+import dagger.Component
+
+@Component(modules = [ApiModule::class])
+interface ApiComponent {
+
+    fun inject(service: CountriesService)
+
+    fun inject(viewModel: ListViewModel)
+}
+```
+
+Service
+```kt
+    @Inject
+    lateinit var api: CountriesApi
+
+    init {
+        DaggerApiComponent.create().inject(this)
+    }
+
+    fun getCountries(): Single<List<Country>> {
+        return api.getCountries()
+    }
+```
+
+ViewModel
+```kt
+    @Inject
+    lateinit var countriesService: CountriesService
+
+    init {
+        DaggerApiComponent.create().inject(this)
+    }
+  ```
+  
