@@ -138,6 +138,7 @@ class MainActivity : AppCompatActivity() {
 ```
 
 ## 2. Integrating Retrofit with RxJava
+<img width="300" src="https://user-images.githubusercontent.com/47273077/166620007-96232a8a-f609-4764-80b4-e4b53f8a405d.png">
 
 ### Model
 Model(Data)
