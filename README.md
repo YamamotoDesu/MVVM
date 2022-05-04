@@ -1,6 +1,13 @@
 # [MVVM](https://www.udemy.com/share/101svY3@dFMxQuzNvdUtskGTJ8qRvUskDkNLee1IOs6lWPbcOQHMt5FPsAYCQz0t-_OyAqFp/)
 Learn the latest Android technologies including Dagger2, MVVM, Kotlin, RxJava, Retrofit, Mockito and Glide
 
+## Functionality
+### Loading Image
+ <img width="300" src="https://user-images.githubusercontent.com/47273077/166446733-42b0a068-3746-4119-9095-855e87ac2303.png">
+ 
+### Refreshing
+ <img width="300" src="https://user-images.githubusercontent.com/47273077/166446733-42b0a068-3746-4119-9095-855e87ac2303.png">
+
 ##  1. Integrating the ViewModel and LiveData components 
  <img width="300" src="https://user-images.githubusercontent.com/47273077/166446733-42b0a068-3746-4119-9095-855e87ac2303.png">
 
