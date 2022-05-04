@@ -26,7 +26,6 @@ class ListViewModel: ViewModel() {
     val countryLoadError = MutableLiveData<Boolean>()
     val loading = MutableLiveData<Boolean>()
 
-
     fun refresh() {
         fetchCountries()
     }
