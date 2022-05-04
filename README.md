@@ -412,7 +412,7 @@ class MainActivity : AppCompatActivity() {
 }
 ```
 
-### Implement Dagger
+### 3. Implement Dagger
 ApiModule
 ```kt
 import com.codewithkyo.countries.model.CountriesApi
