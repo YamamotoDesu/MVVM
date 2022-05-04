@@ -5,6 +5,52 @@ Learn the latest Android technologies including Dagger2, MVVM, Kotlin, RxJava, R
 ### Loading Image
  <img width="300" src="https://github.com/YamamotoDesu/MVVM/blob/master/app/src/main/java/com/codewithkyo/countries/gif/loadingImage.gif">
  
+ ProgressDrawable with an image loading extention
+ ```kt
+ import android.content.Context
+import android.widget.ImageView
+import androidx.swiperefreshlayout.widget.CircularProgressDrawable
+import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.codewithkyo.countries.R
+
+fun getProgressDrawable(context: Context): CircularProgressDrawable {
+    return CircularProgressDrawable(context).apply {
+        strokeWidth = 10f
+        centerRadius = 50f
+        start()
+    }
+}
+
+fun ImageView.loadImage(url: String?, progressDrawable: CircularProgressDrawable) {
+    val options = RequestOptions()
+        .placeholder(progressDrawable)
+        .error(R.mipmap.ic_launcher_round)
+    Glide.with(this.context)
+        .setDefaultRequestOptions(options)
+        .load(url)
+        .into(this)
+
+}
+ ```
+ 
+ Adapter
+ ```kt
+     class CountryViewHolder(viewBinding: ItemCountryBinding): RecyclerView.ViewHolder(viewBinding.root) {
+
+        private val imageView = viewBinding.imageView
+        private val countryName = viewBinding.name
+        private val countryCapital = viewBinding.capital
+        private val progressDrawable = getProgressDrawable(viewBinding.root.context)
+
+        fun bind(country: Country) {
+            countryName.text = country.countryName
+            countryCapital.text = country.capital
+            imageView.loadImage(country.flag, progressDrawable)
+        }
+    }
+ ```
+ 
 ### Refreshing
  <img width="300" src="https://github.com/YamamotoDesu/MVVM/blob/master/app/src/main/java/com/codewithkyo/countries/gif/refreshing.gif">
 
